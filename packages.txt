@@ -1,6 +1,5 @@
-build-essential
-tesseract-ocr
-tesseract-ocr-por
-numpy
-opencv-python
-matplotlib
+pip install opencv-contrib-python
+pip install mediapipe
+pip install tensorflow
+pip install streamlit
+
