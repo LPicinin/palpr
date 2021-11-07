@@ -1,2 +1,4 @@
 tesseract-ocr
 tesseract-ocr-por
+pip install opencv-contrib-python
+pip install streamlit
