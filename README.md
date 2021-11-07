@@ -10,6 +10,7 @@ Instale as bibliotecas:
 - pip install opencv-contrib-python
 - pip install pytesseract
 - pip install matplotlib
+- pip install easyocr
 
 execute:
 

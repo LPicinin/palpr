@@ -1,26 +1,18 @@
 import cv2
 import numpy as np
-import pytesseract
-from matplotlib import pyplot as plt
+from easyocr import Reader
+reader = Reader(['en', 'pt'], gpu=True)
 
 
 def grab_contours(cnts):
     if len(cnts) == 2:
         cnts = cnts[0]
-
     elif len(cnts) == 3:
         cnts = cnts[1]
-
-    # otherwise OpenCV has changed their cv2.findContours return
-    # signature yet again and I have no idea WTH is going on
     else:
-        raise Exception(("Contours tuple must have length 2 or 3, "
-            "otherwise OpenCV changed their cv2.findContours return "
-            "signature yet again. Refer to OpenCV's documentation "
-            "in that case"))
-
-    # return the actual contours array
+        raise Exception("Contours tuple must have length 2 or 3")
     return cnts
+
 
 def getLocalizacaoPlaca(conts):
     localizacao = None
@@ -42,7 +34,4 @@ def getPlacaFromMascara(gray, mascara):
 
 
 def getTextFromImagePlaca(placa):
-    config_tesseract = "--tessdata-dir tessdata --psm 6"
-    texto = pytesseract.image_to_string(placa, lang="por", config=config_tesseract)
-    return "".join(caractere for caractere in texto if caractere.isalnum())
-
+    return reader.readtext(placa, detail=0)
