@@ -1,9 +1,8 @@
 import streamlit as st
-import imutils
 import numpy as np
 import cv2
 
-from ocr import getLocalizacaoPlaca, getPlacaFromMascara, getTextFromImagePlaca
+from ocr import getLocalizacaoPlaca, getPlacaFromMascara, getTextFromImagePlaca, grab_contours
 
 st.title('PALPR')
 st.subheader('Picinin ALPR (Automatic License/Number Plate Recognition)')
@@ -26,7 +25,7 @@ if upload_imagem is not None:
 
     # pega contornos
     conts = cv2.findContours(edged.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-    conts = imutils.grab_contours(conts)
+    conts = grab_contours(conts)
     conts = sorted(conts, key=cv2.contourArea, reverse=True)[:8]
 
     localizacao = getLocalizacaoPlaca(conts)
