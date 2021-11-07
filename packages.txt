@@ -1,3 +1,6 @@
+build-essential
 tesseract-ocr
 tesseract-ocr-por
-opencv-python==4.1.2.30
+numpy
+opencv-python
+matplotlib
